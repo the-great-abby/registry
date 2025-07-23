@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  registry:
+    image: registry:2
+    container_name: local-registry
+    ports:
+      - "32000:5000"
+    environment:
+      REGISTRY_STORAGE_DELETE_ENABLED: "true"
+      REGISTRY_STORAGE_FILESYSTEM_MAXTHREADS: "100"
+    volumes:
+      - registry-data:/var/lib/registry
+    restart: unless-stopped
+
+volumes:
+  registry-data: 
